@@ -4,6 +4,8 @@ package projecteuler;
 /* What is the smallest positive number that is evenly divisible by all of the
 numbers from 1 to 20? */
 
+import java.util.ArrayList; // imported to be able to use ArrayList
+
 public class Problem5 {
     /* They have already told us that 2520 is the smallest number that can be
     divided by each of the numbers from 1 to 10 without any remainder.
@@ -23,18 +25,45 @@ public class Problem5 {
     */
     
     public static void main(String[] args) {
-        int NUMBER = 20; //set what factor we want to check up to.
-        int[] primeArray = {2,3,5,7,11,13,17,19}; //List of prime numbers in range 20. (Have not figured out how to find prime numbers for any NUMBER)
-        int primeMultiplier = 1; //creating the variable to multiply the primes into.
-        /* The for loop is used to multiply all the primes in the array above.
+        int NUMBER = 20; //set what factor we want to check up to. 
+        //42 is the maximum because otherwise the numbers become too big and it goes into negatives.
+        //Creating a list to hold all the prime numbers within our NUMBER limit:
+        ArrayList primeList = new ArrayList(); 
+        //ArrayList used because it is open ended (does not need a size to be given to it).
+        primeList.add(2); // Added 2 to the list so that the for loop would be easier
+        primeList.add(3); // Added 3 to the list so that the for loop would be easier
+        //Finding all the prime numbers:
+        for (int i = 4; i <= NUMBER; i++){
+            for (int j = 2; j <= Math.sqrt(i); j++){
+                // It only needs loop through dividers up to sqrt of i. 
+                if (i % j == 0){
+                    break; // break if there is a number that divides i.
+                }
+                else if (j == Math.floor(Math.sqrt(i))){
+                    /* j is an int so I need to round the sqrt. Otherwise j
+                    will never be equal to i. I want it to be rounded down. */
+                    primeList.add(i);
+                }
+            }
+        }
+        System.out.println("Prime number list: " + primeList);
+        
+        long primeMultiplier = 1L; //creating the variable to multiply the primes into.
+        // Made it "long" so that it could handle bigger numbers.
+        /* The for loop is used to multiply all the primes in the ArrayList above.
         This will give us the number to start looping from when looking for all
         the dividers without remainders. */
-        for (int i : primeArray){
-            primeMultiplier *= i;
+        for (Object i : primeList) {
+            primeMultiplier *= (int) i;
+            /* The values in the list are seen as objects so you need to go 
+            through the loop with an i that is an object too.
+            You cannot multiply objects, so it needed to be converted to an
+            integer before multiplying by the primeMultiplier. */
         }
+        System.out.println("Starting number: " + primeMultiplier);
 
         // Created new variable to amend in the loop:
-        int potentialValue = primeMultiplier; 
+        long potentialValue = primeMultiplier; 
         int count = 0; //will be used to stop the loop.
         boolean finished = false; //when this will be set to true the loop will stop
         
@@ -47,9 +76,8 @@ public class Problem5 {
             System.out.println("new loop:");
             count = 0; //setting count back to 0 after every for loop is done.
             
-            for (int i = (NUMBER/2) + 1; i <= NUMBER; i++){
-                /*I still need to finish a rounding issue - if NUMBER is odd,
-                NUMBER/2 needs to be rounded up.*/
+            for (int i = NUMBER / 2 + 1; i <= NUMBER; i++){
+                // Odd numbers seem to be rounding correctly automatically.
                 System.out.println("i is " + i);
                 if (potentialValue % i != 0){
                     break;
@@ -58,7 +86,7 @@ public class Problem5 {
                 else{
                     System.out.println(i + " divides the value without a remainder");
                     count++;
-                    // If i does divide without a remainder, we wount to count if all i's do that.
+                    // If i does divide without a remainder, we want to count if all i's do that.
                     System.out.println("count is " + count);
                     
                     /* If count shows that all numbers in range have been checked
