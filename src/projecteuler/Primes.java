@@ -9,22 +9,25 @@ import java.util.ArrayList;
 public class Primes {
      
     public static void main(String[] args) {
-        int NUMBER = 100; //set what factor we want to check up to.
+        int LIMIT = 100; //set what factor we want to check up to.
         ArrayList primeList = new ArrayList();
         primeList.add(2);
-        primeList.add(3);
-        System.out.println("Originial list: " + primeList);
-        for (int i = 4; i <= NUMBER; i++){
-            System.out.println("for loop with i = " + i);
-            for (int j = 2; j <= Math.sqrt(i); j++){
-                System.out.println("j = " + j);
-                if (i % j == 0){
-                    System.out.println("j divided i:" + j + " divided " + i);
+        //System.out.println("Originial list: " + primeList);
+        for (int i = 3; i <= LIMIT; i+= 2){
+            //System.out.println("Checking if number " + i + " is prime.");
+            for (int j =  0; j <= primeList.size()-1; j++){
+                //System.out.println("j = " + j);
+                int primeNumber = (int) primeList.get(j);
+                //System.out.println("divider = " + primeNumber);
+                if (i % primeNumber == 0){
+                    //System.out.println("Prime number "+ primeNumber + " divided " + i);
                     break;
                 }
-                else if (j == Math.floor(Math.sqrt(i)) && i % j != 0){
-                    System.out.println("i[" + i + "] is prime");
+                else if (primeNumber > Math.floor(Math.sqrt(i)) && i % primeNumber != 0){
+                    System.out.println("i (" + i + ") is prime");
                     primeList.add(i);
+                    //System.out.println("Final list: " + primeList);
+                    break;
                 }
             }
         }
