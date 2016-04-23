@@ -3,6 +3,7 @@ package projecteuler;
 /* What is the largest prime factor of the number 600851475143? */
 
 public class Problem3 {
+    static long answer;
     
     public long Solve() {
         
@@ -49,12 +50,13 @@ public class Problem3 {
                     // so we want to stop the loop before it gets to that point
                     else if (j == (x / i) - 1){
                         System.out.println((x / i) + " is a prime number" );
+                        answer = x/i;
                         //if the value is prime we want to stop the outer loop:
                         break outerloop; 
                     }
                 }
             }
         }
-        return x;
+        return answer;
     }
 }

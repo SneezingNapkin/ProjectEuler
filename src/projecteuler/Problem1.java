@@ -1,8 +1,14 @@
 package projecteuler;
 
+import java.awt.event.*; //This holds information on listening for inputs
+import java.awt.*;
+
 /*Find the sum of all the multiples of 3 or 5 below 1000.*/
 
 public class Problem1 {
+    static int x;
+    TextField text = new TextField(20);
+    static int value;
     
     public int Solve() {
         
@@ -32,19 +38,21 @@ public class Problem1 {
         }
         
         //This variable will be the sum of all the numbers divided by 3 and 5:
-        int x = 0;
+        x = 0;
         
         //This for loop goes through all the values in the 'dividers' array and adds them to x.
         for (int i : numbers){
             x = x + dividers[i-1];
         }
         
-        System.out.println(x);
+        System.out.println("Problem 1: " + x);
+        //value = x;
         return x;
         
         /* Having completed this problem, I realised that the middle bit is not
         needed. (The 'dividers' array with the multipliers)
         Instead I could have just gone straight to calculating x.
         */
+        
     }
 }

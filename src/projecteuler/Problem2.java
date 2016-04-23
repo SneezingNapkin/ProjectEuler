@@ -4,10 +4,11 @@ package projecteuler;
 exceed four million, find the sum of the even-valued terms. */
 
 public class Problem2 {
+    static int evenTerms;
     
     public int Solve() {
         
-        int evenTerms = 2; 
+        evenTerms = 2; 
                 /* In order to ensure that the first 2 is included in the 
                 even number summation I made this variable start with a 2. This 
                 is because it doesn't get added on from x3 for some reason.*/

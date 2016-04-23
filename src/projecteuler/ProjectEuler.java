@@ -30,12 +30,12 @@ public class ProjectEuler extends JFrame {
     */
     
     // These need to be set outside of ProjectEuler(). Not sure why:
-    TextField textTest = new TextField(20); // This is where the answer will appear.
+    TextField textTest = new TextField(30); // This is where the answer will appear.
     
     public ProjectEuler(){
         super ("Project Euler Solutions"); // Title of the window.
         setLookAndFeel(); // Needed to customize appearance of the window.
-        setSize(350, 100);
+        setSize(350, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         FlowLayout insideLayout = new FlowLayout(); // Layout Manager
         /* This is found in java.awt. It is the bit that decides how the
@@ -51,9 +51,16 @@ public class ProjectEuler extends JFrame {
         //Adding buttons to the window:
         JButton button1 = new JButton("Problem 1");
         JButton button2 = new JButton("Problem 2");
+        JButton button3 = new JButton("Problem 3");
+        JButton button4 = new JButton("Problem 4");
+        JButton button5 = new JButton("Problem 5");
+        JButton button6 = new JButton("Problem 6");
         
         add(button1);
         add(button2);
+        add(button3);
+        add(button4);
+        add(button5);
         add(textTest);
 
         setVisible(true); // Makes the window visible.
@@ -64,13 +71,26 @@ public class ProjectEuler extends JFrame {
         // Here we create the event listener for each button: 
         button1.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-            textTest.setText("Answer to Problem 1");
+                Problem1 button1 = new Problem1();
+                button1.Solve(); 
+                //JOptionPane.showMessageDialog(null, "Text"); //creates a new panel
+                textTest.setText("Answer: " + Problem1.x);
             }
         });
         
         button2.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-            textTest.setText("Answer to Problem 2");
+                Problem2 button2 = new Problem2();
+                button2.Solve();
+                textTest.setText("Answer: " + Problem2.evenTerms);
+            }
+        });
+        
+        button3.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                Problem3 button3 = new Problem3();
+                button3.Solve();
+                textTest.setText("Answer: " + Problem3.answer + " is a prime number");
             }
         });
         
@@ -95,20 +115,28 @@ public class ProjectEuler extends JFrame {
     public static void main(String[] args) {
        /*Here I want to add code that would start an app with buttons and
         Questions. When you click on a question the correct class is called
-        and you are taken to the answer.
+        and you are taken to the answer. 
         */
+        
+        // This starts the window - without it there will be now window.
         ProjectEuler frame = new ProjectEuler();
         
-        Problem1 button1 = new Problem1();
-        button1.Solve();
-                
-        Problem2 button2 = new Problem2();
-        button2.Solve();
-        
-        Problem3 button3 = new Problem3();
-        button3.Solve();
-        
-        Problem4 button4 = new Problem4();
-        button4.Solve();
+        /* Originally I had the bellow buttons here because I was calling all
+        the problems at once.
+        But I want to call them only when the button is clicked. 
+        So I moved them to the individual button action listeners and commented 
+        these out.
+        */    
+//        Problem1 button1 = new Problem1();
+//        button1.Solve(); 
+//                
+//        Problem2 button2 = new Problem2();
+//        button2.Solve();
+//        
+//        Problem3 button3 = new Problem3();
+//        button3.Solve();
+//        
+//        Problem4 button4 = new Problem4();
+//        button4.Solve();
     }
 }
