@@ -7,8 +7,6 @@ import java.awt.*;
 
 public class Problem1 {
     static int x;
-    TextField text = new TextField(20);
-    static int value;
     
     public int Solve() {
         
@@ -46,7 +44,6 @@ public class Problem1 {
         }
         
         System.out.println("Problem 1: " + x);
-        //value = x;
         return x;
         
         /* Having completed this problem, I realised that the middle bit is not
